@@ -1,24 +1,66 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-ocean: #0a5e73;
-  --color-ocean-dark: #074a5c;
-  --color-ocean-light: #0d7a96;
-  --color-teal: #1a8a8a;
-  --color-sand: #f5f0e8;
-  --color-sand-dark: #e8e0d0;
-  --color-slate: #2d3748;
-  --color-slate-light: #4a5568;
-  --font-heading: "Lato", sans-serif;
-  --font-body: "Inter", sans-serif;
+  /* Brand palette — ocean science */
+  --color-ocean-50: #e6f4f8;
+  --color-ocean-100: #b3dde8;
+  --color-ocean-200: #80c6d8;
+  --color-ocean-300: #4dafc8;
+  --color-ocean-400: #1a98b8;
+  --color-ocean-500: #0a7a96;
+  --color-ocean-600: #086378;
+  --color-ocean-700: #064d5c;
+  --color-ocean-800: #043640;
+  --color-ocean-900: #021f24;
+
+  --color-teal-500: #0d9488;
+  --color-teal-600: #0a7a6f;
+
+  --color-sand-50: #faf8f5;
+  --color-sand-100: #f5f0e8;
+  --color-sand-200: #e8e0d0;
+
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+
+  --font-heading: var(--font-lato);
+  --font-body: var(--font-inter);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background: #ffffff;
-  color: #2d3748;
+  color: var(--color-slate-800);
   font-family: var(--font-body);
+  line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+::selection {
+  background: var(--color-ocean-200);
+  color: var(--color-ocean-900);
 }
