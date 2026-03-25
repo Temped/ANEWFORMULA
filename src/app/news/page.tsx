@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
 import { ArrowUpRight, Clock } from "lucide-react";
+import { getSortedPosts } from "@/lib/blog-data";
 
-const articles = [
+const featuredArticles = [
   {
     title: "PFAS: How to Identify and Avoid Them in Everyday Life and Work",
     description:
@@ -45,6 +46,8 @@ const articles = [
 ];
 
 export default function NewsPage() {
+  const blogPosts = getSortedPosts();
+
   return (
     <>
       {/* Hero */}
@@ -79,11 +82,11 @@ export default function NewsPage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Articles */}
+      {/* Featured Articles */}
       <section className="py-28 bg-white">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {articles.map((article, i) => (
+            {featuredArticles.map((article, i) => (
               <motion.div
                 key={article.title}
                 initial={{ opacity: 0, y: 24 }}
@@ -91,10 +94,7 @@ export default function NewsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
               >
-                <Link
-                  href="#"
-                  className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300"
-                >
+                <div className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={article.image}
@@ -109,18 +109,90 @@ export default function NewsPage() {
                     </div>
                   </div>
                   <div className="p-5">
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="font-heading text-[17px] font-bold text-slate-900 leading-snug">
-                        {article.title}
-                      </h3>
-                      <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-slate-400 group-hover:text-ocean-500 transition-colors mt-0.5" />
-                    </div>
+                    <h3 className="font-heading text-[17px] font-bold text-slate-900 leading-snug">
+                      {article.title}
+                    </h3>
                     <p className="mt-2 text-[14px] text-slate-500 leading-relaxed">
                       {article.description}
                     </p>
                     <div className="mt-4 flex items-center gap-1 text-[12px] text-slate-400">
                       <Clock className="h-3 w-3" />
                       {article.read} read
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Series */}
+      <section className="py-28 bg-slate-50">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="max-w-2xl mb-14">
+            <p className="text-[13px] font-semibold uppercase tracking-widest text-ocean-500">
+              Understanding CECs — 20-Part Series
+            </p>
+            <h2 className="mt-4 font-heading text-[clamp(1.75rem,3.5vw,2.75rem)] font-bold text-slate-900 tracking-tight">
+              The science behind{" "}
+              <span className="text-ocean-600">emerging pollutants</span>
+            </h2>
+            <p className="mt-4 text-[16px] text-slate-500 leading-relaxed">
+              A comprehensive blog series exploring Contaminants of Emerging
+              Concern — from PFAS and microplastics to policy and citizen
+              science.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {blogPosts.map((post, i) => (
+              <motion.div
+                key={post.slug}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: (i % 6) * 0.07 }}
+              >
+                <Link
+                  href={`/news/${post.slug}`}
+                  className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300 h-full"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute top-3 left-3 flex items-center gap-2">
+                      <span className="rounded-md bg-white/90 backdrop-blur-sm px-2.5 py-1 text-[11px] font-bold text-slate-700 shadow-sm">
+                        {post.tag}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="p-5 flex flex-col">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="font-heading text-[17px] font-bold text-slate-900 leading-snug">
+                        {post.title}
+                      </h3>
+                      <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-slate-400 group-hover:text-ocean-500 transition-colors mt-0.5" />
+                    </div>
+                    <p className="mt-2 text-[14px] text-slate-500 leading-relaxed line-clamp-2">
+                      {post.description}
+                    </p>
+                    <div className="mt-4 flex items-center gap-3 text-[12px] text-slate-400">
+                      <span className="flex items-center gap-1">
+                        <Clock className="h-3 w-3" />
+                        {post.readTime} read
+                      </span>
+                      <span>
+                        {new Date(post.date).toLocaleDateString("en-GB", {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric",
+                        })}
+                      </span>
                     </div>
                   </div>
                 </Link>
