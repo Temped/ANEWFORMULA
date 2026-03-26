@@ -91,7 +91,7 @@ export default function NewsPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: i * 0.08 }}
               >
-                <div className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
+                <Link href="#" className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={article.image}
@@ -120,7 +120,7 @@ export default function NewsPage() {
                       {article.read} read
                     </div>
                   </div>
-                </div>
+                </Link>
               </motion.div>
             ))}
           </div>
