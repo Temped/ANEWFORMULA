@@ -12,6 +12,7 @@ const courses = [
     image:
       "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675ac0a873066914ca8e8165_closeup-of-blue-translucent-soap-bubbles-floating-2023-11-27-05-25-23-utc.jpg",
     tag: "Beginner",
+    href: "/learn#explaining-cecs",
   },
   {
     title: "PFAS and You",
@@ -20,6 +21,7 @@ const courses = [
     image:
       "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675ac27d6c208d3b582fb685_PFAS_main.webp",
     tag: "Intermediate",
+    href: "/courses",
   },
   {
     title: "Microplastics and Their Impact",
@@ -27,6 +29,7 @@ const courses = [
     image:
       "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675ac43c79f1f6a4d4c65c60_microplastics-in-hand-microplastics-air-pollutio-2023-11-27-05-01-14-utc.jpg",
     tag: "Advanced",
+    href: "/courses",
   },
 ];
 
@@ -77,7 +80,7 @@ export function ScienceCafe() {
               transition={{ duration: 0.45, delay: i * 0.1 }}
             >
               <Link
-                href="/courses"
+                href={course.href}
                 className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300"
               >
                 <div className="relative aspect-[16/10] overflow-hidden">
