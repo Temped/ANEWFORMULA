@@ -1,5 +1,148 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { ArrowUpRight } from "lucide-react";
+
+const categories = [
+  {
+    ageGroup: "7–11 year-olds",
+    tags: ["An Introduction to CECs"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675ab0f1e60894e6fc62df21_1000%20excited-schoolgirl-raising-her-hand-in-classroom-2024-06-27-20-50-07-utc.jpg",
+    color: "bg-emerald-50 text-emerald-700 border-emerald-200",
+  },
+  {
+    ageGroup: "11–15 year-olds",
+    tags: ["Endocrine Disruptors", "Contaminant"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/67597ea131cb2a49a62b5264_teenage-students-listening-to-teacher-in-art-class-2024-10-19-09-08-39-utc.jpg",
+    color: "bg-ocean-50 text-ocean-700 border-ocean-200",
+  },
+  {
+    ageGroup: "Young Adults 16+",
+    tags: ["Microplastics", "In Silico", "In Vitro"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675985330d2251f367c96e9f_portrait-of-four-teenage-students-in-vibrant-cloth-2024-09-09-23-51-58-utc.jpg",
+    color: "bg-violet-50 text-violet-700 border-violet-200",
+  },
+  {
+    ageGroup: "University Students",
+    tags: ["Chemical Fate", "Carcinogen"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675987f60db74c9a9a8fa04d_high-angle-portrait-of-smiling-multiracial-male-an-2023-11-27-05-31-55-utc.jpg",
+    color: "bg-amber-50 text-amber-700 border-amber-200",
+  },
+  {
+    ageGroup: "Parents",
+    tags: ["Ecotoxicology", "Biodiversity"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675987b7e1ceb649a7137057_father-teaching-children-homework-in-living-room-2023-11-27-05-02-13-utc.jpg",
+    color: "bg-rose-50 text-rose-700 border-rose-200",
+  },
+  {
+    ageGroup: "Bio Bots",
+    tags: ["Biomarker", "Endocrine Disruptors"],
+    image:
+      "https://cdn.prod.website-files.com/67360a59a032f30b5272a3f8/675986edf0641e9edf2ffdaf_Bio%20bots.jpg",
+    color: "bg-sky-50 text-sky-700 border-sky-200",
+  },
+];
 
 export default function TakeActionPage() {
-  redirect("/courses");
+  return (
+    <>
+      {/* Hero */}
+      <section className="relative pt-32 pb-20 bg-gradient-to-br from-ocean-700 via-ocean-600 to-teal-600 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.04]">
+          <div
+            className="h-full w-full"
+            style={{
+              backgroundImage:
+                "url(https://cdn.prod.website-files.com/67360a59a032f30b5272a3a0/675869a806115ac8204c4354_Asset%204small.svg)",
+              backgroundSize: "300px",
+            }}
+          />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-[13px] font-semibold uppercase tracking-widest text-ocean-200"
+          >
+            Take Action
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05 }}
+            className="mt-4 font-heading text-[clamp(2rem,4.5vw,3.25rem)] font-bold text-white tracking-tight"
+          >
+            Who are you? Pick your category
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-5 max-w-lg text-[17px] text-ocean-100/80 leading-relaxed"
+          >
+            Find resources tailored to your age group and start making a
+            difference.
+          </motion.p>
+        </div>
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      </section>
+
+      {/* Categories */}
+      <section className="py-28 bg-white">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {categories.map((cat, i) => (
+              <motion.div
+                key={cat.ageGroup}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.07 }}
+              >
+                <Link
+                  href="/courses"
+                  className="group block rounded-2xl border border-slate-200/80 bg-white overflow-hidden hover:border-slate-300 hover:shadow-lg hover:shadow-slate-200/50 transition-all duration-300"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={cat.image}
+                      alt={cat.ageGroup}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                    <div className="absolute top-3 right-3">
+                      <ArrowUpRight className="h-5 w-5 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+                  </div>
+                  <div className="p-5">
+                    <h3 className="font-heading text-[17px] font-bold text-slate-900 mb-3">
+                      {cat.ageGroup}
+                    </h3>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cat.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className={`rounded-md border px-2.5 py-1 text-[11px] font-semibold ${cat.color}`}
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
