@@ -53,11 +53,11 @@ export default async function BlogPostPage({
         </div>
         <div className="relative mx-auto max-w-3xl px-5 sm:px-8">
           <Link
-            href="/news"
+            href="/learn"
             className="inline-flex items-center gap-1.5 text-[13px] font-medium text-ocean-200 hover:text-white transition-colors mb-8"
           >
             <ArrowLeft className="h-3.5 w-3.5" />
-            Back to News
+            Back to Learn
           </Link>
           <div className="flex items-center gap-3 mb-6">
             <span className="rounded-md bg-white/15 backdrop-blur-sm border border-white/10 px-2.5 py-1 text-[11px] font-bold text-ocean-100">
@@ -181,7 +181,7 @@ export default async function BlogPostPage({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {prev ? (
               <Link
-                href={`/news/${prev.slug}`}
+                href={`/learn/${prev.slug}`}
                 className="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-white p-5 hover:border-slate-300 hover:shadow-md hover:shadow-slate-200/40 transition-all duration-300"
               >
                 <ArrowLeft className="h-4 w-4 text-slate-400 group-hover:text-ocean-500 mt-0.5 flex-shrink-0 transition-colors" />
@@ -199,7 +199,7 @@ export default async function BlogPostPage({
             )}
             {next ? (
               <Link
-                href={`/news/${next.slug}`}
+                href={`/learn/${next.slug}`}
                 className="group flex items-start gap-3 rounded-xl border border-slate-200/80 bg-white p-5 hover:border-slate-300 hover:shadow-md hover:shadow-slate-200/40 transition-all duration-300 text-right sm:flex-row-reverse"
               >
                 <ArrowRight className="h-4 w-4 text-slate-400 group-hover:text-ocean-500 mt-0.5 flex-shrink-0 transition-colors" />
